@@ -1,16 +1,11 @@
 import React ,{Component}from 'react'
 import React_dom from 'react-dom'
-import GroceryList from './Main/Grocerylist'
-import KanbanBoardContainer from './kankanBoard/KanbanBoardContainer'
-// import AnimatedShoppingList from './AnimatedShoppingList/AnimatedShoppingList'
-// import Container from './DragDropContext/Container'
 class Hello extends Component{
     render(){
         return(
             
             <div>
                 Hello   React
-                <GroceryList/>
             </div>
         );
     }
@@ -18,6 +13,6 @@ class Hello extends Component{
 
 
 React_dom.render(
-    <KanbanBoardContainer/> ,
+    <Hello/> ,
     document.getElementById('root')
 );
