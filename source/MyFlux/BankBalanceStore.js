@@ -6,9 +6,16 @@ const CHANGE_SEVENT='change';
 let __emitter = new EventEmitter();
 let balance=0
 
-let BankBalanceStore={addListener:(callback)=>{
+let BankBalanceStore={
+
+    getState(){
+        return balance
+    },
+
+    addListener:(callback)=>{
     return __emitter.addListener(CHANGE_SEVENT, callback)
-        }}
+        }
+    }
 
 BankBalanceStore.dispatchToken=AppDispatcher.register((action)=>{
     switch(action.type){

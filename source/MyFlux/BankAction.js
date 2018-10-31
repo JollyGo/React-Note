@@ -3,7 +3,7 @@ import constans from './constans'
 
 let BankActions={
     createAccount(){
-        AppDispatcher({
+        AppDispatcher.dispatch({
             type:constans.CREATED_ACCOUNT,
             ammount:0
         })
