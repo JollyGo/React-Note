@@ -92,7 +92,7 @@ class Card extends Component{
         return connectDropTarget(connectDragSource(
             <div className='card'>
                 <div style={sideColor}/>
-                <div className="card__edit" onClick={()=>{this.props.editHandle(this.props.id)}}>✎</div>
+                <div className="card_edit" onClick={()=>{this.props.editHandle(this.props.id)}}>✎</div>
                 <div className={this.state.showDetail ? 'card_title card_title--is-open':'card_title'}
                     onClick={this.toggleDetails}
                     >
