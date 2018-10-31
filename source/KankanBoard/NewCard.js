@@ -22,12 +22,9 @@ class NewCard extends Component{
   handleSubmit(e){
     e.preventDefault();
     this.props.cardCallbacks.addCard(this.state);
-    this.props.history.pushState(null,'/');
+    this.props.newHandleClose();
   }
 
-  handleClose(e){
-    this.props.history.pushState(null,'/');
-  }
 
   render(){
     return (
@@ -35,13 +32,14 @@ class NewCard extends Component{
                 buttonLabel="Create Card"
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
-                handleClose={this.handleClose.bind(this)} />
+                handleClose={this.props.newHandleClose} />
     );
   }
 }
 
 NewCard.propTypes = {
   cardCallbacks: PropTypes.object,
+  newHandleClose: PropTypes.func.isRequired
 };
 
 

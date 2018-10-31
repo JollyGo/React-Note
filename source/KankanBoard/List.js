@@ -29,6 +29,7 @@ class List extends Component{
                 id={card.id}
                 title = {card.title}
                 description = {card.description}
+                editHandle ={this.props.editHandle}
                 tasks = {card.tasks}
                 color = {card.color}
             ></Card>
@@ -48,6 +49,7 @@ List.propTypes = {
     cards: PropTypes.arrayOf(PropTypes.object),
     taskCallbacks:PropTypes.object,
     cardCallbacks: PropTypes.object,
+    editHandle: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired
 };
 

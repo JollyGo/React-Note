@@ -7,7 +7,7 @@ import 'babel-polyfill';
 class EditCard extends Component{
 
   componentWillMount(){
-    let card = this.props.cards.find((card)=>card.id == this.props.params.card_id);
+    let card = this.props.cards.find((card)=>card.id == this.props.card_id);
     this.setState(Object.assign({},card));
   }
 
@@ -18,12 +18,12 @@ class EditCard extends Component{
   handleSubmit(e){
     e.preventDefault();
     this.props.cardCallbacks.updateCard(this.state);
-    this.props.history.pushState(null,'/');
+    this.props.editHandleClose();
   }
 
-  handleClose(e){
-    this.props.history.pushState(null,'/');
-  }
+  // const handleClose=()=>{
+  //   this.props.editHandleClose;
+  // }
 
   render(){
     return (
@@ -31,13 +31,16 @@ class EditCard extends Component{
                 buttonLabel="Edit Card"
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
-                handleClose={this.handleClose.bind(this)} />
+                handleClose={this.props.editHandleClose} />
     )
   }
 }
 
 EditCard.propTypes = {
   cardCallbacks: PropTypes.object,
+  card_id:PropTypes.number,
+  cards: PropTypes.arrayOf(PropTypes.object),
+  editHandleClose: PropTypes.func.isRequired
 }
 
 

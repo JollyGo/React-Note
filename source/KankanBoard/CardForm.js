@@ -15,17 +15,17 @@ class CardForm extends Component{
                 <div className='card big'>
                     <form onSubmit={this.props.handleSubmit.bind(this)}>
                     <input type='text'
-                            value={this.props.drafeCard.title}
+                            value={this.props.draftCard.title}
                             onChange={this.handleChange.bind(this,'title')}
                             required={true}
-                            autoFocus={true}/>
-                    <textarea value={this.props.drafeCard.description}
+                            autoFocus={true}/><br />
+                    <textarea value={this.props.draftCard.description}
                             onChange={this.handleChange.bind(this,'description')}
                             placeholder="Description"
-                            required={true}/>
+                            required={true}/><br />
                     <label htmlFor='status'>Status</label>
                     <select id='status'
-                            value={this.props.drafeCard.status}
+                            value={this.props.draftCard.status}
                             onChange={this.handleChange.bind(this,'status')}>
                         <option value='to do'>To Do</option>
                         <option value='in-progress'>In Progress</option>
@@ -34,11 +34,10 @@ class CardForm extends Component{
                     <br/>
                     <label htmlFor='color'>Color</label>
                     <input id='color'
-                            value={this.props.drafeCard.color}
+                            value={this.props.draftCard.color}
                             onChange={this.handleChange.bind(this,'color')}
-                            type='color'
-                            defaultValue='#ff0000'/>
-                    <div className='action'>
+                            type='color'/>
+                    <div className='actions'>
                         <button type='submit'>{this.props.buttonLabel}</button>
                     </div>  
                     </form>
@@ -51,7 +50,7 @@ class CardForm extends Component{
 
 CardForm.propTypes={
     buttonLabel: PropTypes.string.isRequired,
-    drafeCard: PropTypes.shape({
+    draftCard: PropTypes.shape({
         title:PropTypes.string,
         description:PropTypes.string,
         status:PropTypes.string,

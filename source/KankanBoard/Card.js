@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import {PropTypes} from 'prop-types'
 import CheckList from './Checklist'
+import {Link} from 'react-router-dom'
 import marked from 'marked'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import {DragSource, DropTarget} from 'react-dnd'
@@ -91,6 +92,7 @@ class Card extends Component{
         return connectDropTarget(connectDragSource(
             <div className='card'>
                 <div style={sideColor}/>
+                <div className="card__edit" onClick={()=>{this.props.editHandle(this.props.id)}}>✎</div>
                 <div className={this.state.showDetail ? 'card_title card_title--is-open':'card_title'}
                     onClick={this.toggleDetails}
                     >
@@ -115,6 +117,7 @@ Card.propTypes = {
     tasks: PropTypes.arrayOf(PropTypes.object),
     taskCallbacks: PropTypes.object,
     cardCallbacks: PropTypes.object,
+    editHandle: PropTypes.func.isRequired,
     connectDragSource: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired
 }
