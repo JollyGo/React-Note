@@ -1,27 +1,13 @@
 import React, { Component } from 'react';
 import BankBalanceStore from './BankBalanceStore'
 import BankAction from './BankAction' 
+import {Container} from 'flux/utils'
 import './style.css'
 
 class MyFlux extends Component{
     constructor(){
         super(...arguments);
         BankAction.createAccount();
-        this.state={
-            balance:BankBalanceStore.getState()
-        }
-    }
-
-    componentDidMount(){
-        this.storeSubscription = BankBalanceStore.addListener(
-            data=>this.handleStoreChange(data)
-        )
-    }
-    // componentWillMount(){
-    //     this.storeSubscription.remove();
-    // }
-    handleStoreChange(){
-        this.setState({balance:BankBalanceStore.getState()})
     }
     deposit(){
         BankAction.depositIntoAcoubt(Number(this.refs.ammount.value));
@@ -46,5 +32,7 @@ class MyFlux extends Component{
         )
     }
 }
-
-export default MyFlux
+MyFlux.getStores=()=>([BankBalanceStore])
+MyFlux.calculateState = (prevState)=>({balance:BankBalanceStore.getState()})
+const AppContainer = Container.create(MyFlux)
+export default AppContainer

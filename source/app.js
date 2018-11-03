@@ -1,6 +1,6 @@
 import React ,{Component}from 'react'
 import React_dom from 'react-dom'
-import MyFlux from './MyFlux/MyFlux'
+import AppContainer from './MyFlux/MyFlux'
 class Hello extends Component{
     render(){
         return(
@@ -14,6 +14,6 @@ class Hello extends Component{
 
 
 React_dom.render(
-    <MyFlux/> ,
+    <AppContainer/> ,
     document.getElementById('root')
 );
