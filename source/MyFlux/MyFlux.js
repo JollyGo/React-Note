@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BankBalanceStore from './BankBalanceStore'
+import BankRewardsStore from './BankRewardsStore'
 import BankAction from './BankAction' 
 import {Container} from 'flux/utils'
 import './style.css'
@@ -22,6 +23,7 @@ class MyFlux extends Component{
             <div>
                 <header>MyFlux Bank</header>
                 <h1> You balance is ￥{(this.state.balance).toFixed(2)}</h1>
+                <h2> You Points Rewards Tier is {this.state.rewardsTier}</h2>
                 <div className='atm'>
                     <input type="text" placeholder='Enter Ammount' ref='ammount'></input>
                     <br/>
@@ -33,6 +35,7 @@ class MyFlux extends Component{
     }
 }
 MyFlux.getStores=()=>([BankBalanceStore])
-MyFlux.calculateState = (prevState)=>({balance:BankBalanceStore.getState()})
+MyFlux.calculateState = (prevState)=>({balance:BankBalanceStore.getState(),
+rewardsTier:BankRewardsStore.getState()})
 const AppContainer = Container.create(MyFlux)
 export default AppContainer
