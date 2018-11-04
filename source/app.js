@@ -1,5 +1,6 @@
 import React ,{Component}from 'react'
 import React_dom from 'react-dom'
+import AppContainer from './MyFlux/MyFlux'
 class Hello extends Component{
     render(){
         return(
@@ -13,6 +14,6 @@ class Hello extends Component{
 
 
 React_dom.render(
-    <Hello/> ,
+    <AppContainer/> ,
     document.getElementById('root')
 );
