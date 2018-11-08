@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import List from './List'
 import {DragDropContext} from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
-import {Route} from 'react-router-dom'
 import EditCard from './EditCard'
 import NewCard from './NewCard'
 
@@ -43,24 +42,19 @@ class KanbanBoard extends Component{
                 <div onClick={this.newHandle.bind(this)} className="float-button">+</div>
                 <List id = 'todo' 
                     title = 'To Do'
-                    taskCallbacks={this.props.taskCallbacks} 
-                    cardCallbacks={this.props.cardCallbacks}
                     editHandle={this.editHandle.bind(this)}
                     cards={
-                        this.props.cards.filter((card)=>card.status==='todo')
+                        this.props.cards.filter((card)=>{
+                            return card.status==='todo'})
                 }/>
                 <List id = 'in-progress' 
                     title = 'In Progress' 
-                    taskCallbacks={this.props.taskCallbacks}
-                    cardCallbacks={this.props.cardCallbacks}
                     editHandle={this.editHandle.bind(this)}
                     cards={
                         this.props.cards.filter((card)=>card.status==='in-progress')
                 }/>
                 <List id = 'done' 
                     title = 'Done' 
-                    taskCallbacks={this.props.taskCallbacks}
-                    cardCallbacks={this.props.cardCallbacks}
                     editHandle={this.editHandle.bind(this)}
                     cards={
                         this.props.cards.filter((card)=>card.status==='done')
@@ -77,9 +71,7 @@ class KanbanBoard extends Component{
 };
 
 KanbanBoard.propTypes = {
-    cards: PropTypes.arrayOf(PropTypes.object),
-    taskCallbacks: PropTypes.object,
-    cardCallbacks: PropTypes.object
+    cards: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default DragDropContext(HTML5Backend)(KanbanBoard);

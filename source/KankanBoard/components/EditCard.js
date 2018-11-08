@@ -3,21 +3,25 @@ import PropTypes from 'prop-types'
 import CardForm from './CardForm';
 // Polyfills
 import 'babel-polyfill';
+import CardStore from '../stores/CardStore';
+import CardActionCreators from '../actions/CardActionCreators';
 
 class EditCard extends Component{
 
   componentWillMount(){
-    let card = this.props.cards.find((card)=>card.id == this.props.card_id);
+    let card = CardStore.getCard(parseInt(this.props.card_id));
     this.setState(Object.assign({},card));
   }
 
   handleChange(field, value){
-    this.setState({[field]: value});
+    this.setState({[field]: value})
   }
 
   handleSubmit(e){
     e.preventDefault();
-    this.props.cardCallbacks.updateCard(this.state);
+    CardActionCreators.updateCard(CardStore.getCard(this.props.card_id),
+      this.state
+  );
     this.props.editHandleClose();
   }
 

@@ -1,11 +1,11 @@
 import React,{Component} from 'react'
 import {PropTypes} from 'prop-types'
 import CheckList from './Checklist'
-import {Link} from 'react-router-dom'
 import marked from 'marked'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import {DragSource, DropTarget} from 'react-dnd'
-import constants from './constants';
+import constants from '../constants';
+import CardActionCreators from '../actions/CardActionCreators';
 
 let titlePropTypes = (props, propName, componentName)=>{
     if (props[propName]){
@@ -26,14 +26,17 @@ const cardDragSpec ={
         }
     },
     endDrag(props){
-        props.cardCallbacks.presistCardDrag(props.id,props.status)
+        console.log("0124124185522")
+        CardActionCreators.persistCardDrag(props)
     }
 }
 
 const cardDropSpec = {
     hover(props, monitor){
         const draggedId = monitor.getItem().id;
-        props.cardCallbacks.updatePosition(draggedId,props.id)
+        if(props.id!==draggedId){
+            CardActionCreators.updateCardPosition(draggedId,props.id)
+        }
     }
 }
 
@@ -75,7 +78,6 @@ class Card extends Component{
                     <CheckList 
                         cardId={this.props.id} 
                         tasks={this.props.tasks}
-                        taskCallbacks={this.props.taskCallbacks}
                         />
                 </div>
             )
@@ -115,8 +117,6 @@ Card.propTypes = {
     description: PropTypes.string,
     color: PropTypes.string,
     tasks: PropTypes.arrayOf(PropTypes.object),
-    taskCallbacks: PropTypes.object,
-    cardCallbacks: PropTypes.object,
     editHandle: PropTypes.func.isRequired,
     connectDragSource: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired
